@@ -1,0 +1,35 @@
+body{
+    background: url(../img/fondo3.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main-section{
+   margin: 0 auto;
+   margin-top: 10%;
+   padding: -35; 
+}
+.modal-content{
+    background-color: gray;
+    opacity: .60;
+    padding: 0 35px;
+    box-shadow: 0px 0px 5px;
+}
+.form-group input{
+    background-color: beige;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    padding-left: -15%;
+    border-radius: 5px;
+}
+.form-group::before{
+    font-family: "Font Awesome\ 5 Free";
+}
+.form-group#user-group::before{
+    content: "\f2bd";
+}
+.form-group#password-group::before{
+    content: "\f023";
+}
+
+
