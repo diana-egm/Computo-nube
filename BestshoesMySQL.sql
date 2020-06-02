@@ -37,6 +37,10 @@ CREATE TABLE Cliente(
 	Email VARCHAR(50) NULL
 ); 
 
+insert INTO Cliente VALUES ('1234', '041254', 'Luis', 'Zuniga', 'Celedon', 'L12', '12345', 'Guanajuato', 'salamaca', 'Emiliano Zapata', '4', '', 'Bellavista', '36880', '4641407420', 'luis_z_95@live.com');
+
+
+
 
 CREATE TABLE Producto
 (
@@ -117,9 +121,3 @@ CREATE TABLE Main
     Id_venta INT NOT NULL REFERENCES Venta(Id_venta)
 );
 
-CREATE VIEW vw_factura AS
-SELECT f.Id_factura AS Id_factura, f.Id_cliente AS Id_cliente,
-f.Id_venta AS Id_venta, f.Fecha AS Fecha, SUM(v.Precio) AS Precio, 
-f.IVA AS IVA, SUM(SUM(v.Precio)) AS Total
-FROM Factura f, Venta v
-WHERE f.Id_venta = v.Id_venta;
