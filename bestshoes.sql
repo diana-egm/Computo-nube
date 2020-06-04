@@ -42,14 +42,15 @@ insert INTO Cliente VALUES ('1234', '041254', 'Luis', 'Zuniga', 'Celedon', 'L12'
 
 
 
-CREATE TABLE Producto
-(
+CREATE TABLE Producto(
 	Id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	Id_proveedor INT NOT NULL REFERENCES Proveedor(Id_proveedor),
 	Nombre VARCHAR(50) NOT NULL,
 	Talla DECIMAL(10, 5) NOT NULL,
 	Detalle VARCHAR(200) NOT NULL
 );
+
+INSERT INTO Producto VALUES ('1287', '8712', 'Air Jordan 1 Low Black Toe', '10', 'Edicion limitada');
 
 CREATE TABLE Carrito
 (

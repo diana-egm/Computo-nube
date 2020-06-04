@@ -15,22 +15,23 @@
         <?php
           include "Conexion.php";
           if(isset($_POST['Login'])){
-              if($_POST['user']==''or $_POST['password']=='');
+              if($_POST['usuario']==''or $_POST['password']=='');
               echo"Los campos deben ser llenadaos";
           }
           else {
-              $sentencia = "SELECT * FROM Cliente";
+              $sentencia = "SELECT * FROM cliente";
               $resultado = mysqli_query($conexion, $sentencia);
               $verificar = 0;
               while($result = mysqli_fetch_object($resultado)){
-                  if($result->Nombre_usuario == $_POST['user']){
+                  if($result->Nombre_usuario == $_POST['usuario']){
                       $verificar = 1;
+                      echo "Ingresa los datos";
                   }
               }
               if($verificar == 0){
-                  $user = $_POST['user'];
+                  $user = $_POST['usuario'];
                   $password = $_POST['password'];
-                  $conexion->query("INSERT INTO Cliente (Nombre_usuario,Contraseña) VALUES ('$user','$password')");
+                  $conexion->query("INSERT INTO cliente (Nombre_usuario,Contraseña) VALUES ('$user','$password')");
                   mysqli_query($conexion, $sentencia);
                   echo "Login Exitoso";
               }
@@ -43,7 +44,7 @@
                 <div class="modal-content">
                     <form action="login.php" class="col-12" method="post">
                         <div style="margin: 15px" class="form-group" id="user-group">
-                            <input type="text" name="user" class="from-control" placeholder="User">
+                            <input type="text" name="usuario" class="from-control" placeholder="User">
                         </div>
                         <div style="margin: 15px" class="form-group" id="password-group">
                             <input type="password" name="password" class="from-control" placeholder="Password">
