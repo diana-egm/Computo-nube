@@ -30,17 +30,14 @@ CREATE TABLE Cliente(
 	Ciudad VARCHAR(50) NOT NULL,
 	Calle VARCHAR(50) NOT NULL,
 	No_exterior INT NOT NULL,
-	No_interior INT NULL,
+	No_interior INT,
 	Colonia VARCHAR(50) NOT NULL,
-	CP INT NOT NULL,
+	CP VARCHAR(50) NOT NULL,
 	Telefono VARCHAR(50) NULL,
 	Email VARCHAR(50) NULL
 ); 
-
-insert INTO Cliente VALUES ('1234', '041254', 'Luis', 'Zuniga', 'Celedon', 'L12', '12345', 'Guanajuato', 'salamaca', 'Emiliano Zapata', '4', '', 'Bellavista', '36880', '4641407420', 'luis_z_95@live.com');
-
-
-
+insert INTO Cliente VALUES (1, '041254', 'Luis', 'Zuniga', 'Celedon', 'L12', '12345', 'Guanajuato', 'salamaca', 
+'Emiliano Zapata', 4, NULL, 'Bellavista', '36880', '4641407420', 'luis_z_95@live.com');
 
 CREATE TABLE Producto(
 	Id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -49,7 +46,6 @@ CREATE TABLE Producto(
 	Talla DECIMAL(10, 5) NOT NULL,
 	Detalle VARCHAR(200) NOT NULL
 );
-
 INSERT INTO Producto VALUES ('1287', '8712', 'Air Jordan 1 Low Black Toe', '10', 'Edicion limitada');
 
 CREATE TABLE Carrito
@@ -65,7 +61,6 @@ CREATE TABLE Categoria
 	Nombre VARCHAR(50) NOT NULL,
 	Id_tipo INT NOT NULL REFERENCES Tipo(Id_tipo)
 );
-
 
 CREATE TABLE Venta
 (
@@ -106,7 +101,6 @@ CREATE TABLE Pedido
 	Fecha DATE NOT NULL
 );
 
-
 CREATE TABLE Main
 (
 	Id_main INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -122,3 +116,8 @@ CREATE TABLE Main
     Id_venta INT NOT NULL REFERENCES Venta(Id_venta)
 );
 
+CREATE VIEW vw_cliente AS 
+SELECT Id_producto, Nombre, Talla, Detalle
+FROM Producto;
+
+SELECT * FROM vw_cliente;
