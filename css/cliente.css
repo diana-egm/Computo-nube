@@ -1,0 +1,12 @@
+body{
+    background-size: cover;
+}
+table{
+    margin: auto; 
+    width: 800px; 
+    border-collapse: separate; 
+    border-spacing: 10px 5px;
+    color: deepskyblue;
+    border: darkslateblue 5px solid;
+    background: darkslategray;
+}
