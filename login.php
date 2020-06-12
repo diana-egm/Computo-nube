@@ -13,27 +13,30 @@
         <!-- Css -->
         <link rel="stylesheet" type="text/css" href="css/login.css">
         <?php
-          include "Conexion.php";
+          include "conexion.php";
           if(isset($_POST['Login'])){
               if($_POST['usuario']==''or $_POST['password']=='');
               echo"Los campos deben ser llenadaos";
           }
           else {
-              $sentencia = "SELECT * FROM cliente";
-              $resultado = mysqli_query($conexion, $sentencia);
+              $sentencia = "SELECT * FROM Cliente";
+              $resultado = $conexion->query($sentencia) or die (mysqli_error($conexion));
               $verificar = 0;
               while($result = mysqli_fetch_object($resultado)){
-                  if($result->Nombre_usuario == $_POST['usuario']){
-                      $verificar = 1;
-                      echo "Ingresa los datos";
-                  }
-              }
-              if($verificar == 0){
+                if($result->Nombre_usuario == $_POST['usuario']){
+                    if($result->Contraseña == $_POST['Password']){
+                        $verificar = 1;
+                        echo "Ingresa los datos";
+                    }
+                }
+            }
+              if($verificar == 1){
                   $user = $_POST['usuario'];
                   $password = $_POST['password'];
                   $conexion->query("INSERT INTO cliente (Nombre_usuario,Contraseña) VALUES ('$user','$password')");
                   mysqli_query($conexion, $sentencia);
                   echo "Login Exitoso";
+                  header('Location: index.php');
               }
           }
         ?>

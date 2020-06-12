@@ -20,7 +20,7 @@
                     include "conexion.php";
                     $sentencia="SELECT Id_producto, Nombre, Talla, Detalle, Precio FROM Producto";
                     $resultado= $conexion->query($sentencia) or die (mysqli_error($conexion)); 
-                    while($fila=$resultado->mysqli_fetch_assoc())
+                    while($fila= mysqli_fetch_assoc($resultado))
                     {
                         echo "<tr>";
                         echo "<td>"; echo $fila['Id_producto']; echo "</td>";
