@@ -37,14 +37,14 @@
                     </thead>
                     <?php
                     include "conexion.php";
-                    $sentencia="SELECT * FROM Producto";
+                    $sentencia="SELECT * FROM Cliente";
                     $resultado= $conexion->query($sentencia) or die (mysqli_error($conexion)); 
-                    while($fila=$resultado->mysqli_fetch_assoc())
+                    while($fila= mysqli_fetch_assoc($resultado))
                     {
                         echo "<tr>";
                         echo "<td>"; echo $fila['RFC']; echo "</td>";
                         echo "<td>"; echo $fila['Nombre']; echo "</td>";
-                        echo "<td>"; echo $fila['Ap_Paterno']; echo "</td>";
+                        echo "<td>"; echo $fila['Ap_paterno']; echo "</td>";
                         echo "<td>"; echo $fila['Ap_materno']; echo "</td>";
                         echo "<td>"; echo $fila['Nombre_usuario']; echo "</td>";
                         echo "<td>"; echo $fila['Estado']; echo "</td>";
