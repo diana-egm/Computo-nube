@@ -2,20 +2,13 @@ DROP DATABASE IF EXISTS Bestshoes;
 CREATE DATABASE Bestshoes;
 USE Bestshoes;
 
-CREATE TABLE Proveedor
-(
-	Id_proveedor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Nombre VARCHAR(50) NOT NULL,
-	Direccion VARCHAR(50) NOT NULL,
-	CP INT NULL,
-	Telefono VARCHAR(50) NULL,
-	Email VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE Tipo
-(
-	Id_tipo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Nombre VARCHAR(50) NOT NULL
+CREATE TABLE Administrador(
+	Id_admin INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Anombre VARCHAR(50) NOT NULL,
+    Ap_apaterno VARCHAR(50) NOT NULL,
+    Ap_amaterno VARCHAR(50) NOT NULL,
+    Ausuario VARCHAR(50) NOT NULL,
+    Acontraseña VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Cliente(
@@ -41,34 +34,20 @@ insert INTO Cliente VALUES (1, '041254', 'Luis', 'Zuniga', 'Celedon', 'L12', '12
 
 CREATE TABLE Producto(
 	Id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Id_proveedor INT NOT NULL REFERENCES Proveedor(Id_proveedor),
 	Nombre VARCHAR(50) NOT NULL,
 	Talla DECIMAL(10, 5) NOT NULL,
-	Detalle VARCHAR(200) NOT NULL
+	Detalle VARCHAR(200) NOT NULL,
+    Precio DECIMAL(18, 5) NOT NULL,
+    Stock INT NOT NULL
 );
-INSERT INTO Producto VALUES ('1287', '8712', 'Air Jordan 1 Low Black Toe', '10', 'Edicion limitada');
-
-CREATE TABLE Carrito
-(
-	Id_carrito INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Id_producto INT NOT NULL REFERENCES Producto(Id_producto),
-	Cantidad INT NOT NULL
-); 
-
-CREATE TABLE Categoria
-(
-	Id_categoria INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Nombre VARCHAR(50) NOT NULL,
-	Id_tipo INT NOT NULL REFERENCES Tipo(Id_tipo)
-);
+INSERT INTO Producto VALUES ('1287', 'Air Jordan 1 Low Black Toe', '10', 'Edicion limitada', 870.00, 3); 
 
 CREATE TABLE Venta
 (
 	Id_venta INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Id_carrito INT NOT NULL REFERENCES Carrito(Id_carrito),
 	Id_producto INT NOT NULL REFERENCES Producto(Id_producto),
 	Cantidad INT NOT NULL,
-	Precio DECIMAL(18, 5) NOT NULL
+	Fecha DATE NOT NULL
 );
 
 CREATE TABLE Factura
@@ -76,48 +55,7 @@ CREATE TABLE Factura
 	Id_factura INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	Id_cliente INT NOT NULL REFERENCES Cliente(Id_cliente),
 	Id_venta INT NOT NULL REFERENCES Venta(Id_venta),
-	Fecha DATE NOT NULL,
-	Precio DECIMAL(18, 5) NOT NULL,
+    Id_producto INT NOT NULL REFERENCES Producto(Id_producto),
 	IVA DECIMAL(18, 5) NOT NULL,
 	Total DECIMAL(18, 5) NOT NULL
 );
-    
-CREATE TABLE Inventario
-(
-	Id_inventario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Id_categoria INT NOT NULL REFERENCES Categoria(Id_categoria),
-	Id_producto INT NOT NULL REFERENCES Producto(Id_producto),
-	Id_proveedor INT NOT NULL REFERENCES Proveedor(Id_proveedor),
-	Stock INT NOT NULL,
-	Precio DECIMAL(18, 5) NOT NULL
-);
-
-CREATE TABLE Pedido
-(
-	Id_pedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Id_producto INT NOT NULL REFERENCES Producto(Id_producto),
-	Id_proveedor INT NOT NULL REFERENCES Proveedor(Id_proveedor),
-	Cantidad INT NOT NULL,
-	Fecha DATE NOT NULL
-);
-
-CREATE TABLE Main
-(
-	Id_main INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Id_carrito INT NOT NULL REFERENCES Carrito(Id_carrito),
-    Id_categoria INT NOT NULL REFERENCES Categoria(Id_categoria),
-    Id_cliente INT NOT NULL REFERENCES Cliente(Id_cliente),
-    Id_factura INT NOT NULL REFERENCES Factura(Id_factura),
-    Id_inventario INT NOT NULL REFERENCES Inventario(Id_inventario),
-    Id_pedido INT NOT NULL REFERENCES Pedido(Id_pedido),
-    Id_producto INT NOT NULL REFERENCES Producto(Id_producto),
-    Id_proveedor INT NOT NULL REFERENCES Proveedor(Id_proveedor),
-    Id_tipo INT NOT NULL REFERENCES Tipo(Id_tipo),
-    Id_venta INT NOT NULL REFERENCES Venta(Id_venta)
-);
-
-CREATE VIEW vw_cliente AS 
-SELECT Id_producto, Nombre, Talla, Detalle
-FROM Producto;
-
-SELECT * FROM vw_cliente;

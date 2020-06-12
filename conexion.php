@@ -1,7 +1,6 @@
 <?php
-$conexion = new mysqli("localhost","root","123456789","bestshoes");
-if (mysqli_connect_errno()) {
-        print("Fallo la conexion");
-    }
-
+    $conexion = new mysqli("localhost","root","root","bestshoes");
+    if (mysqli_connect_errno()) {
+            print("Fallo la conexion");
+        }
 ?>

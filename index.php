@@ -14,11 +14,11 @@
                         <th>Nombre</th>
                         <th>Talla</th>
                         <th>Detalle</th>
-                        
+                        <th>Precio</th>
                     </thead>
                     <?php
                     include "conexion.php";
-                    $sentencia="SELECT * FROM Producto";
+                    $sentencia="SELECT Id_producto, Nombre, Talla, Detalle, Precio FROM Producto";
                     $resultado= $conexion->query($sentencia) or die (mysqli_error($conexion)); 
                     while($fila=$resultado->mysqli_fetch_assoc())
                     {
@@ -27,6 +27,7 @@
                         echo "<td>"; echo $fila['Nombre']; echo "</td>";
                         echo "<td>"; echo $fila['Talla']; echo "</td>";
                         echo "<td>"; echo $fila['Detalle']; echo "</td>";
+                        echo "<td>"; echo $fila['Precio']; echo "</td>";
                     }
                     ?>
             </div>
