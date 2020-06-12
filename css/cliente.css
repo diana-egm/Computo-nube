@@ -1,0 +1,24 @@
+body{
+    background: url(../img/fondo3.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+table{
+    margin: auto; 
+    width: 800px; 
+    border-collapse: collapse; 
+    border-spacing: 10px 5px;
+    border: darkslateblue 5px solid;
+    background: darkslategray;
+    width: 100%
+}
+
+table th, td{
+    border: 1px solid black;
+}
+th{
+    color: hsla(308, 90%, 48%, 0.925);
+}
+
+td{
+    color: yellow;
+}
